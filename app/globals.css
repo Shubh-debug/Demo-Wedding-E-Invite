@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&family=Yatra+One&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input, textarea {
+  user-select: text !important;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+  BASE — imperial navy stage, ink defaults, focus, motion
+   ───────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Clip decorative overflow at the root to prevent horizontal scrollbars */
+    overflow-x: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply font-serif text-ink antialiased;
+    background-color: #0B1325;
+    background-image: 
+      /* Subtle micro-grain for authentic velvet texture */
+      radial-gradient(
+        circle,
+        rgba(212, 175, 55, 0.04) 0.5px,
+        transparent 0.6px
+      ),
+      /* Deep midnight sapphire radial vignette stage */
+      radial-gradient(
+        ellipse 90% 60% at 50% 25%,
+        #0B1325 0%,
+        #080E1D 55%,
+        #060A14 100%
+      );
+    background-size: 20px 20px, 100% 100%;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: clip;
+  }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid theme("colors.gold.DEFAULT");
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: rgba(197, 160, 89, 0.3);
+    color: #FBF7EE;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   COMPONENTS — the printed-card primitives & ambient stage
+   ───────────────────────────────────────────────────────────── */
+@layer components {
+  /* Skip link for keyboard users */
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[200] rounded-full border border-gold
+           bg-parchment-50 px-5 py-3 font-serif text-sm font-semibold
+           tracking-wide2 text-maroon shadow-card;
+  }
+
+  /* Section shell */
+  .section {
+    @apply relative z-10 px-4 py-16 text-center sm:py-20;
+  }
+
+  .container-card {
+    @apply mx-auto w-full max-w-3xl;
+  }
+
+  /* Small caps label above headings */
+  .eyebrow {
+    @apply font-serif text-[11px] font-semibold uppercase tracking-label
+           text-gold-ink sm:text-xs;
+  }
+
+  /* Section heading — Roman caps, imperial navy */
+  .heading {
+    @apply font-display text-2xl font-normal leading-tight tracking-name
+           text-maroon sm:text-[32px];
+  }
+
+  .body-copy {
+    @apply font-serif text-[17px] leading-relaxed text-ink-soft sm:text-lg;
+  }
+
+  /* Warm Antique Ivory Paper Card grounded with royal ambient occlusion */
+  .paper {
+    @apply relative rounded-sm backdrop-blur-[2px];
+    border: 1px solid rgba(201, 162, 39, 0.45);
+    background-color: #FBF7EE;
+    background-image: radial-gradient(
+      ellipse 95% 85% at 50% 25%,
+      #FBF7EE 0%,
+      #F7F0E3 60%,
+      #EEE4D2 100%
+    );
+    box-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.35),
+      0 14px 32px -4px rgba(6, 10, 20, 0.65),
+      0 40px 80px -12px rgba(6, 10, 20, 0.9),
+      0 0 0 1px rgba(197, 160, 89, 0.35);
+  }
+
+  .container-card > div > .paper {
+    border: 1px solid rgba(201, 162, 39, 0.45);
+    background-color: #FBF7EE;
+    background-image: radial-gradient(
+      ellipse 95% 85% at 50% 25%,
+      #FBF7EE 0%,
+      #F7F0E3 60%,
+      #EEE4D2 100%
+    );
+    box-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.35),
+      0 14px 32px -4px rgba(6, 10, 20, 0.65),
+      0 40px 80px -12px rgba(6, 10, 20, 0.9),
+      0 0 0 1px rgba(197, 160, 89, 0.35);
+  }
+
+  /* Double gold rule frame (outer hairline + inner line) */
+  .gold-frame::before,
+  .gold-frame::after {
+    content: "";
+    @apply pointer-events-none absolute rounded-[2px];
+  }
+  .gold-frame::before {
+    inset: 6px;
+    @apply border border-gold/55 sm:inset-2.5 md:inset-3;
+  }
+  .gold-frame::after {
+    inset: 10px;
+    @apply border border-gold/25 sm:inset-4 md:inset-[18px];
+  }
+
+  /* Thin gold divider rule */
+  .gold-rule {
+    @apply h-px w-full bg-gold-rule;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex w-full items-center justify-center rounded-sm px-6 py-4
+           font-serif text-base font-semibold tracking-wide2 transition
+           duration-200 sm:text-[17px];
+  }
+  .btn-primary {
+    @apply border border-gold-deep text-parchment-50 hover:shadow-raised;
+    background-image: linear-gradient(90deg, #121D38, #1B2A4E, #0B1325);
+  }
+  .btn-outline {
+    @apply border border-gold/70 bg-parchment-50/70 text-maroon
+           hover:border-gold hover:bg-parchment-50;
+  }
+
+  /* Form fields */
+  .field {
+    @apply w-full rounded-sm border border-gold/50 bg-parchment-50/80 px-5 py-4
+           font-serif text-base text-ink placeholder:text-ink-muted
+           focus:border-gold focus:outline-none focus:ring-2
+           focus:ring-gold/30;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   UTILITIES
+   ───────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Gold foil text (names on the seal / envelope) */
+  .text-foil {
+    background-image: theme("backgroundImage.gold-foil");
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Aged-paper speckle for cards sitting on the page */
+  .paper-grain {
+    background-image: radial-gradient(
+      circle,
+      rgba(197, 160, 89, 0.05) 0.5px,
+      transparent 0.6px
+    );
+    background-size: 20px 20px;
+  }
+
+  /* 3D render */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Scratch card — canvas styles
+   ───────────────────────────────────────────────────────────── */
+.scratch-stage {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 2px;
+  touch-action: none;
+}
+
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  transition: opacity 0.9s ease;
+}
+
+.scratch-canvas.is-cleared {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hero — subtle scroll cue animation
+   ───────────────────────────────────────────────────────────── */
+@keyframes hero-scroll {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+}
+
+/* Force standard uppercase lining figures across the font */
+.font-serif,
+.font-display {
+  font-variant-numeric: lining-nums tabular-nums;
+  -moz-font-feature-settings: "lnum" 1;
+  -webkit-font-feature-settings: "lnum" 1;
+  font-feature-settings: "lnum" 1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Petals — Realistic floating & drifting (no edge collapsing)
+   ───────────────────────────────────────────────────────────── */
+@keyframes petal-flutter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0) 
+               rotateX(var(--tilt-x, 15deg)) 
+               rotateY(var(--tilt-y, -15deg)) 
+               rotateZ(0deg);
+  }
+  10% {
+    opacity: var(--petal-opacity, 0.85);
+  }
+  90% {
+    opacity: var(--petal-opacity, 0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--sway, 45px), 108vh, 0) 
+               rotateX(calc(var(--tilt-x, 15deg) * -1)) 
+               rotateY(calc(var(--tilt-y, -15deg) * -1)) 
+               rotateZ(var(--spin-z, 140deg));
+  }
+}
+
+.animate-petal-flutter {
+  animation: petal-flutter var(--fall-duration, 18s) cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  transform-style: preserve-3d;
+}
