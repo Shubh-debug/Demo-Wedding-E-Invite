@@ -1,3 +1,6 @@
+ "use client";
+
+import { useEffect, useRef } from "react";
 import siteConfig from "@/site.config";
 import { Flourish } from "./ornaments/Motifs";
 
@@ -11,6 +14,43 @@ function Lines({ text, className = "" }) {
 
 export default function Hero() {
   const { couple, hero } = siteConfig;
+  const autoScrollTimerRef = useRef(null);
+  const autoScrollCancelledRef = useRef(false);
+
+  useEffect(() => {
+    const cancelAutoScroll = () => {
+      autoScrollCancelledRef.current = true;
+      if (autoScrollTimerRef.current) {
+        clearTimeout(autoScrollTimerRef.current);
+        autoScrollTimerRef.current = null;
+      }
+    };
+
+    const startAutoScroll = () => {
+      if (autoScrollCancelledRef.current) return;
+
+      autoScrollTimerRef.current = setTimeout(() => {
+        if (autoScrollCancelledRef.current) return;
+        document.getElementById("scratch")?.scrollIntoView({ behavior: "smooth" });
+        autoScrollTimerRef.current = null;
+      }, 7000);
+    };
+
+    window.addEventListener("wedding:hero-ready", startAutoScroll);
+    window.addEventListener("wheel", cancelAutoScroll, { passive: true });
+    window.addEventListener("touchstart", cancelAutoScroll, { passive: true });
+    window.addEventListener("scroll", cancelAutoScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("wedding:hero-ready", startAutoScroll);
+      window.removeEventListener("wheel", cancelAutoScroll);
+      window.removeEventListener("touchstart", cancelAutoScroll);
+      window.removeEventListener("scroll", cancelAutoScroll);
+      if (autoScrollTimerRef.current) {
+        clearTimeout(autoScrollTimerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <header className="relative z-10 px-2.5 pb-6 pt-3 sm:px-6 sm:pb-10 sm:pt-5">
@@ -138,10 +178,10 @@ export default function Hero() {
               {/* Groom's Lineage Hierarchy */}
               <div className="mt-2 flex flex-col items-center gap-0.5 font-serif uppercase leading-relaxed tracking-[0.14em] sm:tracking-[0.16em]">
                 <p className="text-[10.5px] font-medium text-[#2D3748] sm:text-xs">
-                  S/O Smt. Manju &amp; Swargiya Uttam Kumar Ji Minny
+                  S/O Smt. Sunita &amp; Shri Vikram Singhania
                 </p>
                 <p className="text-[10.5px] font-medium text-[#334155] sm:text-xs">
-                  G/S/O Swargiya Laxmi Devi &amp; Swargiya Tikamchand Ji Minny
+                  G/S/O Smt. Kamini &amp; Shri Harish Singhania
                 </p>
                 {/* <p className="text-[10.5px] font-medium text-[#2D3748] sm:text-xs">
                   Brother of ********* 
@@ -173,10 +213,10 @@ export default function Hero() {
               {/* Bride's Lineage Hierarchy */}
               <div className="mt-2 flex flex-col items-center gap-0.5 font-serif uppercase leading-relaxed tracking-[0.14em] sm:tracking-[0.16em]">
                 <p className="text-[10.5px] font-medium text-[#2D3748] sm:text-xs">
-                  D/O Smt. Babita &amp; Shri Rajkumar Prasad
+                  D/O Smt. Radhika &amp; Shri Rajeshwari Mittal
                 </p>
                 <p className="text-[10.5px] font-medium text-[#334155] sm:text-xs">
-                  G/D/O Swargiya Kesari Devi &amp; Swargiya Baijnath Ji Prasad
+                  G/D/O Smt. Meera &amp; Shri Mohan Mittal
                 </p>
                 {/* <p className="text-[10.5px] font-medium text-[#2D3748] sm:text-xs">
                   Sister of ****

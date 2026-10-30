@@ -167,8 +167,8 @@ const siteConfig = {
     displayName: "X & Y",
   },
   event: {
-    venue: "Dada Bari Temple",
-    city: "29, Badridas Temple Street, Kolkata",
+    venue: "The Grand Heritage Palace & Lawns",
+    city: "Udaipur, Rajasthan",
     startISO: "2026-11-30T17:00:00+05:30",
   },
 };

@@ -49,9 +49,9 @@ export default function InviteMessage() {
                   ✦ स्वागतोत्सुक ✦
                 </h3>
                 <div className="mt-2.5 space-y-1 font-serif text-[13px] font-semibold leading-relaxed tracking-wide text-[#121D38] sm:text-[13.5px]">
-                  <p>Ajayshree - Manoj Gulgulia</p>
-                  <p>Kiran - Sunil Gulgulia</p>
-                  <p>Chitra - Rahul Parakh</p>
+                  <p>Sunita - Vikram Singhania</p>
+                  <p>Pooja - Rakesh Singhania</p>
+                  <p>Neelam - Amit Singhania</p>
                 </div>
               </div>
 
@@ -61,8 +61,8 @@ export default function InviteMessage() {
                   ✦ ननिहाल पक्ष ✦
                 </h3>
                 <div className="mt-2.5 space-y-1 font-serif text-[13px] font-semibold leading-relaxed tracking-wide text-[#121D38] sm:text-[13.5px]">
-                  <p>Nanuram Ji Indrachand Ji</p>
-                  <p>Lalwanhi</p>
+                  <p>Smt. Shakuntala &amp; Shri Ramgopal Ji Chokhani</p>
+                  <p>Jaipur (Rajasthan)</p>
                   <p className="text-xs font-normal text-[#8C6D37]/90 italic">
                     Baikunthpur (Chattisgarh)
                   </p>
@@ -75,10 +75,9 @@ export default function InviteMessage() {
                   ✦ विनीत ✦
                 </h3>
                 <div className="mt-2.5 space-y-1 font-serif text-[13px] font-semibold leading-relaxed tracking-wide text-[#121D38] sm:text-[13.5px]">
-                  <p>Dungar mal, Surendra, Kamal,</p>
-                  <p>Hitesh Minny</p>
+                  <p>Devendra, Harsh, Yash, Aryan Singhania</p>
                   <p className="text-xs font-medium text-[#8C6D37]">
-                    Evam Samasth Minny Parivaar
+                    Evam Samasth Singhania Parivaar
                   </p>
                 </div>
               </div>
@@ -99,7 +98,7 @@ export default function InviteMessage() {
               </p>
               
               <p className="mt-2 font-serif text-xs font-semibold tracking-wider text-[#121D38] sm:text-[13px]">
-                Vidit, Mudit, Taniska, Hardik, Parnit, Garv
+                Aarohi, Reyansh, Vihaan, Anvi, Kabir
               </p>
             </div>
 
@@ -111,19 +110,19 @@ export default function InviteMessage() {
 
               <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs font-serif sm:gap-5">
                 <a
-                  href="tel:+918420028988"
+                  href="tel:+919876543210"
                   className="inline-flex items-center gap-1.5 rounded-full border border-[#C5A059]/50 bg-[#FBF7EE] px-3.5 py-1.5 text-[12px] font-semibold text-[#121D38] shadow-xs transition-all hover:border-[#C5A059] hover:bg-[#F7F0E3]"
                 >
                   <span className="text-[#8C6D37]">📞</span>
-                  <span>+91 84200 28988</span>
+                  <span>+91 98765 43210</span>
                 </a>
 
                 <a
-                  href="tel:+919916887474"
+                  href="tel:+919123456789"
                   className="inline-flex items-center gap-1.5 rounded-full border border-[#C5A059]/50 bg-[#FBF7EE] px-3.5 py-1.5 text-[12px] font-semibold text-[#121D38] shadow-xs transition-all hover:border-[#C5A059] hover:bg-[#F7F0E3]"
                 >
                   <span className="text-[#8C6D37]">📞</span>
-                  <span>+91 98318 30402</span>
+                  <span>+91 91234 56789</span>
                 </a>
               </div>
             </div>

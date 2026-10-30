@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 import { Flourish } from "./ornaments/Motifs";
 
 const ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI"];
-const SWIPE_THRESHOLD = 50;
+const SWIPE_THRESHOLD = 40;
 
 export default function Journey({ onUnlock, isUnlocked }) {
   const { journey } = siteConfig;
@@ -20,6 +20,7 @@ export default function Journey({ onUnlock, isUnlocked }) {
   const [animatingDir, setAnimatingDir] = useState(null); // 'next' | 'prev' | null
 
   const startXRef = useRef(0);
+  const dragXRef = useRef(0);
   const isPointerDownRef = useRef(false);
 
   useEffect(() => {
@@ -43,12 +44,15 @@ export default function Journey({ onUnlock, isUnlocked }) {
     isPointerDownRef.current = true;
     setIsDragging(true);
     startXRef.current = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+    dragXRef.current = 0;
   };
 
   const handlePointerMove = (e) => {
     if (!isPointerDownRef.current || animatingDir) return;
     const currentX = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
-    setDragX(currentX - startXRef.current);
+    const nextDragX = currentX - startXRef.current;
+    dragXRef.current = nextDragX;
+    setDragX(nextDragX);
   };
 
   const handlePointerUp = () => {
@@ -56,27 +60,20 @@ export default function Journey({ onUnlock, isUnlocked }) {
     isPointerDownRef.current = false;
     setIsDragging(false);
 
-    if (Math.abs(dragX) > SWIPE_THRESHOLD) {
-      // Swiping Left-to-Right (dragX > 0) -> Next Chapter
-      // Swiping Right-to-Left (dragX < 0) -> Previous Chapter
-      const dir = dragX > 0 ? "next" : "prev";
-      triggerSlide(dir);
+    if (Math.abs(dragXRef.current) > SWIPE_THRESHOLD) {
+      triggerSlide();
     } else {
       setDragX(0);
     }
   };
 
-  const triggerSlide = (dir) => {
-    setAnimatingDir(dir);
+  const triggerSlide = () => {
+    setAnimatingDir("next");
     setDragX(0);
+    dragXRef.current = 0;
 
     setTimeout(() => {
-      let nextIndex;
-      if (dir === "next") {
-        nextIndex = (currentIndex + 1) % milestones.length;
-      } else {
-        nextIndex = (currentIndex - 1 + milestones.length) % milestones.length;
-      }
+      const nextIndex = (currentIndex + 1) % milestones.length;
       setCurrentIndex(nextIndex);
       checkCompletion(nextIndex);
       setAnimatingDir(null);
@@ -222,8 +219,8 @@ export default function Journey({ onUnlock, isUnlocked }) {
           <div className="mt-6 flex items-center justify-center gap-6">
             <button
               type="button"
-              onClick={() => !animatingDir && triggerSlide("prev")}
-              aria-label="Previous Chapter"
+              onClick={() => !animatingDir && triggerSlide()}
+              aria-label="Next Chapter"
               className="flex h-8 w-8 items-center justify-center rounded-full border border-gold/50 bg-[#FBF7EE] text-xs font-bold text-maroon shadow-sm transition-transform hover:scale-105 active:scale-95"
             >
               ←
@@ -256,7 +253,7 @@ export default function Journey({ onUnlock, isUnlocked }) {
 
             <button
               type="button"
-              onClick={() => !animatingDir && triggerSlide("next")}
+              onClick={() => !animatingDir && triggerSlide()}
               aria-label="Next Chapter"
               className="flex h-8 w-8 items-center justify-center rounded-full border border-gold/50 bg-[#FBF7EE] text-xs font-bold text-maroon shadow-sm transition-transform hover:scale-105 active:scale-95"
             >

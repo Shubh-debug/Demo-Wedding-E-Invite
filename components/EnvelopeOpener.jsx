@@ -151,6 +151,7 @@ export default function EnvelopeOpener() {
         ease: "power1.out",
         onComplete: () => {
           window.scrollTo(0, 0);
+          window.dispatchEvent(new CustomEvent("wedding:hero-ready"));
           setPhase("gone");
         },
       });
@@ -320,6 +321,11 @@ export default function EnvelopeOpener() {
         opacity: 0,
         duration: 1.0,
         ease: "power2.inOut",
+        onComplete: () => {
+          window.scrollTo(0, 0);
+          window.dispatchEvent(new CustomEvent("wedding:hero-ready"));
+          setPhase("gone");
+        },
       },
       5.55
     );
@@ -347,7 +353,7 @@ export default function EnvelopeOpener() {
           <div
             className="pointer-events-none absolute inset-0 -z-30 scale-105 filter blur-[0.5px]"
             style={{
-              backgroundImage: "url('/images/envelope/Royal Background.webp')",
+              backgroundImage: "url('/images/Envelope/Royal Background.webp')",
               backgroundSize: "cover",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
@@ -444,7 +450,7 @@ export default function EnvelopeOpener() {
               {/* ENVELOPE INNER BACK DROP */}
               <img
                 ref={backDropRef}
-                src="/images/envelope/Back Drop.png"
+                src="/images/Envelope/Back Drop.png"
                 alt=""
                 className={`${layer} z-[5]`}
                 loading="eager"
@@ -458,7 +464,7 @@ export default function EnvelopeOpener() {
               >
                 <img
                   ref={letterRef}
-                  src="/images/envelope/letter.webp"
+                  src="/images/Envelope/letter.png"
                   alt=""
                   className="
                     pointer-events-none
@@ -474,7 +480,7 @@ export default function EnvelopeOpener() {
 
               {/* ENVELOPE BODY */}
               <img
-                src="/images/envelope/body.webp"
+                src="/images/Envelope/body.webp"
                 alt=""
                 className={`${layer} z-20`}
                 loading="eager"
@@ -489,7 +495,7 @@ export default function EnvelopeOpener() {
               >
                 <img
                   ref={flapRef}
-                  src="/images/envelope/flap.webp"
+                  src="/images/Envelope/flap.webp"
                   alt=""
                   className={`${layer}`}
                   loading="eager"
@@ -498,7 +504,7 @@ export default function EnvelopeOpener() {
 
                 <img
                   ref={sealRef}
-                  src="/images/envelope/seal.png"
+                  src="/images/Envelope/seal.png"
                   alt=""
                   className={`${layer} z-10`}
                   loading="eager"

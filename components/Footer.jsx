@@ -20,7 +20,7 @@ export default function Footer() {
     handleScroll();
 
     console.log(
-      "%c Crafted with ❤️ for Amal & Neha by Shubham %c #AmehaKiKahani ✦ Dada Bari Temple 2026 ",
+      "%c Crafted for Aarav & Ananya's royal celebration %c #AarAnanya ✦ Udaipur 2026 ",
       "background: #121D38; color: #FBF7EE; font-size: 13px; font-weight: bold; border: 1px solid #C5A059; padding: 6px 10px; border-radius: 4px;",
       "background: #C5A059; color: #0B1325; font-size: 13px; font-weight: bold; padding: 6px 10px; border-radius: 4px;"
     );
@@ -66,13 +66,13 @@ export default function Footer() {
                 textShadow: "0 0 14px rgba(212, 175, 55, 0.28)",
               }}
             >
-              {couple?.displayName || "AMAL & NEHA"}
+              {couple?.displayName || "AARAV & ANANYA"}
             </h3>
 
             {/* Wedding Hashtag Badge */}
             <div className="mt-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#C5A059]/25 bg-[#FBF7EE]/5 px-3 py-0.5 text-[11px] font-medium tracking-widest text-[#F3E2B8]/90 backdrop-blur-xs">
               <span className="text-[9px] text-[#C5A059]">✦</span>
-              <span>#AmehaKiKahani</span>
+              <span>#AarAnanya</span>
               <span className="text-[9px] text-[#C5A059]">✦</span>
             </div>
 
@@ -81,7 +81,7 @@ export default function Footer() {
 
             {/* Date & Destination Details */}
             <p className="relative z-10 font-serif text-[11px] font-medium tracking-[0.25em] text-[#C5A059]/90 uppercase sm:text-xs">
-              28 – 30 . 11 . 2026 &nbsp;•&nbsp; DADA BARI TEMPLE, KOLKATA
+              28 – 30 . 11 . 2026 &nbsp;•&nbsp; UDAIPUR, RAJASTHAN
             </p>
 
             {/* Refined Colophon Line */}

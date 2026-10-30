@@ -1,0 +1,9 @@
+{
+  "name": "Aarav & Ananya — The Royal Wedding Celebration | Demo Invitation",
+  "short_name": "Aarav & Ananya",
+  "description": "A luxury royal e-invite experience celebrating Aarav and Ananya's wedding in Udaipur.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1325",
+  "theme_color": "#0B1325"
+}

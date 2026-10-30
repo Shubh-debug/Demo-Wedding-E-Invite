@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import { Flourish } from "./ornaments/Motifs";
 
 function downloadEventICS(event, coupleName) {
-  const eventTitle = `${event.title || event.name} - ${coupleName || "Amal & Neha"} Wedding`;
+  const eventTitle = `${event.title || event.name} - ${coupleName || "Aarav & Ananya"} Wedding`;
   const calStart = event.startDateISO;
   const calEnd = event.endDateISO;
   const description = `${event.tagline || ""}\\nDress Code: ${event.dressCode || ""}`;
@@ -14,7 +14,7 @@ function downloadEventICS(event, coupleName) {
   const icsData = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//AmalAndNeha//Wedding Invite//EN",
+    "PRODID:-//AaravAndAnanya//Demo Wedding Invite//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
@@ -45,7 +45,7 @@ function downloadEventICS(event, coupleName) {
 export default function EventsSection() {
   const { events, couple } = siteConfig;
   const eventList = events.items || events || [];
-  const coupleDisplayName = couple?.displayName || "Amal & Neha";
+  const coupleDisplayName = couple?.displayName || "Aarav & Ananya";
 
   const handleCalendarClick = (e, ev) => {
     // Check if user is on iOS / macOS Safari to trigger native .ics calendar subscription

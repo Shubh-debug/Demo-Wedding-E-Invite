@@ -41,11 +41,11 @@ export default function EventDetails() {
                 id="venue-heading"
                 className="mt-2 font-display text-2xl uppercase tracking-[0.14em] text-[#121D38] sm:text-3xl"
               >
-                {event.venue || "Dada Bari Temple"}
+                {event.venue || "The Grand Heritage Palace & Lawns"}
               </h2>
 
               <p className="mt-1 font-serif text-xs italic tracking-wider text-[#334155] sm:text-sm">
-                {event.city || "Kolkata, West Bengal"}
+                {event.city || "Udaipur, Rajasthan"}
               </p>
 
               <Flourish className="mx-auto my-4 w-32 text-gold/75 sm:w-40" />
@@ -55,7 +55,7 @@ export default function EventDetails() {
             <div className="group relative z-10 my-1 aspect-[16/10] w-full overflow-hidden rounded-xl border border-[#C5A059]/60 bg-[#EEE4D2] shadow-inner">
               <iframe
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                  event.city || "Dada Bari Temple, Kolkata"
+                  event.city || "City Palace, Udaipur, Rajasthan"
                 )}&z=17&output=embed`}
                 className="h-full w-full filter contrast-[0.92] brightness-[0.96] sepia-[0.32] saturate-[0.75] transition-all duration-300 group-hover:contrast-100 group-hover:sepia-[0.15]"
                 loading="lazy"
@@ -105,7 +105,7 @@ export default function EventDetails() {
                     </span>
                   </div>
                   <p className="mt-0.5 font-serif text-[13.5px] font-semibold text-[#121D38]">
-                    {event.transit?.train.route || "Howrah Railway Station (HWH)"}
+                    {event.transit?.train.route || "Udaipur City Railway Station (UDZ)"}
                   </p>
                   <p className="font-serif text-xs text-[#334155]">
                     {event.transit?.train.description}
@@ -124,11 +124,11 @@ export default function EventDetails() {
                       {event.transit?.road.label || "BY ROAD & CABS"}
                     </span>
                     <span className="rounded-full border border-[#C5A059]/30 bg-[#0B1325]/8 px-2 py-0.5 font-serif text-[9.5px] font-semibold text-[#121D38]">
-                      {event.transit?.road.badge || "Via Howrah Bridge / Vidyasagar Setu"}
+                      {event.transit?.road.badge || "Maharana Pratap Airport"}
                     </span>
                   </div>
                   <p className="mt-0.5 font-serif text-[13.5px] font-semibold text-[#121D38]">
-                    {event.transit?.road.route || "Via Vidyasagar Setu (2nd Hooghly Bridge) / Kona Expressway"}
+                    {event.transit?.road.route || "Maharana Pratap Airport (UDR)"}
                   </p>
                   <p className="font-serif text-xs text-[#334155]">
                     {event.transit?.road.description}

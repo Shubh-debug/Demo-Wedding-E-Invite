@@ -35,6 +35,7 @@ export default function ScratchCountdownSection({ onUnlock, isUnlocked }) {
   const drawing = useRef(false);
   const scratchedOnce = useRef(false);
   const lastPointRef = useRef(null);
+  const activePointerIdRef = useRef(null);
 
   // Countdown timer logic
   useEffect(() => {
@@ -167,6 +168,18 @@ export default function ScratchCountdownSection({ onUnlock, isUnlocked }) {
 
   const celebrate = useCallback(() => {
     if (cleared) return;
+
+    const canvas = canvasRef.current;
+    if (canvas && activePointerIdRef.current !== null) {
+      try {
+        if (canvas.hasPointerCapture(activePointerIdRef.current)) {
+          canvas.releasePointerCapture(activePointerIdRef.current);
+        }
+      } catch (_) {}
+    }
+    drawing.current = false;
+    lastPointRef.current = null;
+    activePointerIdRef.current = null;
     setCleared(true);
     if (typeof onUnlock === "function") {
       onUnlock();
@@ -258,6 +271,7 @@ export default function ScratchCountdownSection({ onUnlock, isUnlocked }) {
 
   const onPointerDown = (e) => {
     drawing.current = true;
+    activePointerIdRef.current = e.pointerId;
     lastPointRef.current = null;
     try {
       e.target.setPointerCapture(e.pointerId);
@@ -274,6 +288,7 @@ export default function ScratchCountdownSection({ onUnlock, isUnlocked }) {
     if (!drawing.current) return;
     drawing.current = false;
     lastPointRef.current = null;
+    activePointerIdRef.current = null;
     try {
       if (e.target.hasPointerCapture(e.pointerId)) {
         e.target.releasePointerCapture(e.pointerId);
@@ -290,7 +305,7 @@ export default function ScratchCountdownSection({ onUnlock, isUnlocked }) {
   ];
 
   return (
-    <section className="section scroll-mt-6" id="save-the-date" aria-labelledby="scratch-heading">
+    <section className="section scroll-mt-6" id="scratch" aria-labelledby="scratch-heading">
       <div className="container-card max-w-[820px] px-4 sm:px-6">
         {/* Dynamic Section Heading */}
         <div ref={headerRef} className="mb-8 text-center transition-all duration-300">
@@ -328,9 +343,12 @@ export default function ScratchCountdownSection({ onUnlock, isUnlocked }) {
             <div className="relative z-10 p-2 sm:p-4">
               {/* Scratch / Date Stage Container with Responsive Aspect Ratio */}
               <div
-                className="scratch-stage relative aspect-[4/3] w-full min-h-[220px] max-h-[380px] overflow-hidden rounded-sm border border-[#D8BC7E]/60 sm:aspect-[16/9]"
+                className={`scratch-stage pointer-events-auto relative aspect-[4/3] w-full min-h-[220px] max-h-[380px] overflow-hidden rounded-sm border border-[#D8BC7E]/60 ${
+                  cleared ? "touch-pan-y" : "touch-auto"
+                } sm:aspect-[16/9]`}
                   style={{
                     backgroundColor: "#F7F0E3",
+                  touchAction: cleared ? "pan-y" : "auto",
                   boxShadow: "inset 0 2px 6px rgba(70, 25, 15, 0.08)",
                 }}
                 ref={stageRef}
@@ -365,7 +383,8 @@ export default function ScratchCountdownSection({ onUnlock, isUnlocked }) {
                 {!cleared && (
                   <canvas
                     ref={canvasRef}
-                    className="scratch-canvas absolute inset-0 z-20 h-full w-full cursor-crosshair touch-none select-none transition-opacity duration-300"
+                    className="scratch-canvas pointer-events-auto absolute inset-0 z-20 h-full w-full cursor-crosshair touch-none select-none transition-opacity duration-300"
+                    style={{ touchAction: "none" }}
                     onPointerDown={onPointerDown}
                     onPointerMove={onPointerMove}
                     onPointerUp={onPointerUp}

@@ -27,11 +27,10 @@ const greatVibes = Great_Vibes({
   display: "swap",
 });
 
-const weddingTitle = `${siteConfig.couple.displayName} — ${siteConfig.milestone.label}`;
+const weddingTitle = "Aarav & Ananya — The Royal Wedding Celebration | Demo Invitation";
 const weddingDescription =
-  `Join us for the wedding of ${siteConfig.couple.displayName} on ` +
-  `${siteConfig.hero.dayNumber || "30"} ${siteConfig.hero.monthLabel || "November"} ${siteConfig.hero.yearLabel || "2026"} ` +
-  `at ${siteConfig.hero.venueName || siteConfig.event.venue}, ${siteConfig.hero.venueCity || siteConfig.event.city}.`;
+  "Step into a luxury royal e-invite experience for Aarav & Ananya, " +
+  "celebrating timeless traditions, palace festivities, and a beautiful new beginning.";
 
 export const metadata = {
   title: weddingTitle,

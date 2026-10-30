@@ -103,8 +103,8 @@ export default function Rsvp() {
     if (!trimmedName && !trimmedWishes) {
       // Clean, elegant fallback when both fields are left empty
       text =
-        `*Wedding RSVP — ${couple.displayName}*\n\n` +
-        `Count me in for the wedding celebration! Looking forward to celebrating with you both in Kolkata. 🎊✨`;
+        `*Wedding RSVP — Aarav & Ananya*\n\n` +
+        `Looking forward to celebrating this royal celebration with you both!`;
     } else {
       // Structured format when user fills out name and/or wishes
       text =
@@ -223,7 +223,7 @@ export default function Rsvp() {
                     />
                     <Image
                       src="/images/RSVPhands.png"
-                      alt="Sacred Hastmelap - Amal & Neha"
+                      alt="Sacred Hastmelap - Aarav & Ananya"
                       fill
                       sizes="(max-width: 640px) 128px, 160px"
                       className="object-contain select-none drop-shadow-[0_4px_12px_rgba(18,29,56,0.18)]"
@@ -248,7 +248,7 @@ export default function Rsvp() {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. Amal Minny"
+                      placeholder={rsvp.namePlaceholder}
                       value={guestName}
                       onChange={(e) => setGuestName(e.target.value)}
                       className="w-full rounded-md border border-[#C5A059]/40 bg-[#FBF7EE] px-3.5 py-2.5 font-serif text-sm text-[#121D38] outline-none transition focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
@@ -261,7 +261,7 @@ export default function Rsvp() {
                     </label>
                     <input
                       type="text"
-                      placeholder="Drop a blessing or song recommendation..."
+                      placeholder={rsvp.messagePlaceholder}
                       value={wishes}
                       onChange={(e) => setWishes(e.target.value)}
                       className="w-full rounded-md border border-[#C5A059]/40 bg-[#FBF7EE] px-3.5 py-2.5 font-serif text-sm text-[#121D38] outline-none transition focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059]"
@@ -272,7 +272,7 @@ export default function Rsvp() {
                     type="submit"
                     className="mt-3 w-full cursor-pointer rounded-md border border-[#C5A059] bg-gradient-to-r from-[#121D38] via-[#1B2A4E] to-[#0B1325] py-3 font-serif text-xs font-bold uppercase tracking-widest text-[#FBF7EE] shadow-md transition hover:from-[#1B2A4E] hover:via-[#121D38] hover:to-[#0B1325] active:scale-[0.99]"
                   >
-                    Send Direct Wishes to the Groom 💬
+                    Send Direct Wishes to the Couple 💬
                   </button>
                 </form>
               </div>
